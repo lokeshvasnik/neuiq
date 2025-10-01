@@ -1,0 +1,761 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI Variable Static Display", sans-serif;
+  font-weight: 400;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@keyframes slideInFromBottom {
+  0% {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+.advisor_banner_main {
+  height: 100%;
+}
+.clipped_image {
+  left: -49px;
+}
+.primary_gradient,
+.header_banner {
+  background: linear-gradient(135deg, #101421, #1c2e5b);
+}
+.advise_banner img{
+  position: absolute;
+  width: 400px;
+  left: -51px;
+  bottom: -120px;
+}
+
+@media (min-width: 300px) and (max-width: 992px) {
+
+  .advise_banner img {
+    position: unset;
+    width: 310px;
+    transform: rotate(0deg);
+    margin: 0 auto;
+}
+}
+
+.custom-scroll::-webkit-scrollbar{
+  width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-track{
+  background-color: aliceblue;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb{
+  background: #ffe89f;
+}
+
+.swiper-pagination .swiper-pagination-bullet{
+  background-color: #1c2e5b;
+}
+
+.swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background-color: #ffe89f;
+}
+
+/* New Home Page Css Here */
+
+.hero-background{
+  background-image: url('./assets/images/home-page-hero-banner.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+.hexagon-card-layout {
+  height: 65px; /* adjust to control the size  */
+  aspect-ratio: cos(30deg);
+  clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+  background: #000000;
+}
+
+.contact-footer-background {
+  background-image: url('./assets/images/home-page-footer-banner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Data Enginner Css */
+
+.data-engineering-background{
+  background-image: url('./assets/images/data-engineering-background.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.data-enginnering-footer-background{
+  background-image: url('./assets/images/data-eng-footer-banner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Tech Services Css */
+
+.tech-services-background{
+  background-image: url('./assets/images/tech-services-bg.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.tech-services-footer-background{
+  background-image: url('./assets/images/tech-service-footer-banner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Ai readiness */
+
+.ai-readiness-background{
+  background-image: url('./assets/images/ai_readiness_banner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.mesh-background{
+  background-image: url('./assets/images/mesh-image.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Career page */
+.careers-background{
+  background-image: url('./assets/images/careers-hero-banner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.newsroom-hero-banner{
+  background-image: url('./assets/images/newsroom-hero-banner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+/* about us  page */
+.aboutus-hero-banner{
+  background-image: url('./assets/images/about-us-hero.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.about-us-footer-background{
+  background-image: url('./assets/images/about-us-footer-dark.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes scrollUpLoop {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.scroll-container {
+  display: flex;
+  flex-direction: column;
+  animation: scrollUpLoop 15s linear infinite;
+  
+}
+
+.scroll-container:hover {
+  animation-play-state: paused;
+}
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-up {
+  animation: scrollUp 45s linear infinite;
+}
+
+
+/* Swiper Js ( NEUIQ IN THE NEWS ) */
+
+.news-swiper .swiper-slide {
+  transition: all 0.3s ease-in-out;
+}
+
+.news-swiper .swiper-slide.active-slide {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.news-swiper .swiper-pagination-bullet {
+  background: #ccc;
+  opacity: 1;
+  border-radius: unset;
+}
+
+.news-swiper .swiper-pagination-bullet-active {
+  background: #00cacf !important;
+}
+
+/* Desktop Accordian Changes */
+
+.accordionsWrapper {
+  height: 85vh;       /* fix height to viewport */
+  overflow: hidden;    /* hide overflow, no native scroll */
+  position: relative;  /* needed for pinning context */
+}
+
+.accordion-pin-container {
+  position: relative; /* pinned elements should be positioned */
+  height: auto; /* or a fixed height matching viewport if you want */
+/* capabilities page css start */
+}
+
+.hero-background.advisory {
+  background-image: url(assets/images/banner-advisory.webp);
+  background-position: center;
+  background-size: cover;
+}
+
+.contact-us-bg-image {
+  background-image: url(assets/images/contact-us.webp);
+  background-position: center;
+  background-size: cover;
+}
+
+.vertical-gradient-border {
+  position: relative;
+}
+
+.vertical-gradient-border::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 2px;
+  height: 70%;
+  background: linear-gradient(180deg, #000018, #0028ff, #6675ff);
+  transform: translateY(-50%);
+}
+
+.capabilities-box-main {
+    justify-content: start;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+/* capabilities page css end */
+
+/* Add to your CSS file or Tailwind config if using custom classes */
+.hexagon-shape {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-color: #000014;
+  border: 2px solid #00B6B6;
+}
+
+/* Hexagon shape */
+.hexagon {
+  width: 100px;
+  height: 55px;
+  background: transparent;
+  position: relative;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+}
+
+.hexagon:before {
+  bottom: 100%;
+  border-bottom: 30px solid #0A0A1A;
+  border-bottom-color: inherit;
+}
+
+.hexagon:after {
+  top: 100%;
+  border-top: 30px solid #0A0A1A;
+  border-top-color: inherit;
+}
+
+/* Define the hexagon container styles */
+.hexagon {
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+/* .hexagon:hover {
+  background-color: rgb(6, 182, 212);
+} */
+
+
+.contact-footer-background.advisory-footer {
+    background-image: url('./assets/images/advisory-footer-banner.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title-color-after-hover{
+  color: #00CACF;
+}
+
+/* Add this in your styles.css or a <style> block */
+
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #888; /* or a custom color */
+  border-radius: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
+
+/* Card animation css */
+.cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.custom-card {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  height: 70vh;
+  background: #3a3a3a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card1 {
+  z-index: 2;
+}
+.card2 {
+  top: 30px;
+  z-index: 3;
+}
+.card3 {
+  top: 60px;
+  z-index: 4;
+}
+.card4 {
+  top: 90px;
+  z-index: 5;
+}
+
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #00B6B6 transparent;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #00B6B6;
+  border-radius: 9999px;
+}
+
+
+
+.advisory-data-herobanner{
+  background-image: url('./assets/images/advisory-data-herobanner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.advisory-customer-herobanner{
+  background-image: url('./assets/images/advisory-customer-herobanner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.advisory-user-herobanner{
+  background-image: url('./assets/images/advisory-user-herobanner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.dataunification-herobanner{
+  background-image: url('./assets/images/dataunification-hero-banner-one.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.data-mord-herobanner{
+  background-image: url('./assets/images/data-mord-herobanner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.dataforai-herobanner{
+  background-image: url('./assets/images/dataforai-herobanner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.datatoinsight-herobanner{
+  background-image: url('./assets/images/datatoinsight-herobanner-one.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+.qualtrics-herobanner{
+    background-image: url('./assets/images/qualtrics-herobanner.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+}
+
+.scroll-container-div {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* About Us Page Css */
+
+.leadership-hexagon {
+  width: 300px; 
+  aspect-ratio: 1 / 1;
+  clip-path: polygon(
+    50% 0%,
+    93% 25%,  
+    93% 75%,  
+    50% 100%,
+    7% 75%,   
+    7% 25%    
+  );
+  overflow: hidden;
+}
+
+.leadership-hexagon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.future-hexagon{
+  height: 160px; /* adjust to control the size  */
+  position: relative;
+  z-index: 10;
+  aspect-ratio: cos(30deg);
+  clip-path: polygon(-50% 50%,50% 100%,150% 50%,50% 0);
+  background: #000;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  padding: 14px;
+}
+
+.line-path {
+  position: relative;
+  z-index: 1;  /* or even negative if needed */
+}
+
+.list-style-circle {
+  list-style-type: circle;
+}
+
+#job-application {
+  background-image: url('./assets/images/career-banner.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75%; /* fixed small size */
+}
+
+/* aboutus slider  */
+
+.perspective {
+  perspective: 1500px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.group:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+ backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* For Safari */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+
+.hexagon-shape {
+  clip-path: polygon(
+    25% 6.7%,
+    75% 6.7%,
+    100% 50%,
+    75% 93.3%,
+    25% 93.3%,
+    0% 50%
+  );
+  overflow: hidden;
+}
+
+.hexagon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sub-menu-footer {
+  color: #a5a5a5;
+}
+
+
+/* Force square bullets */
+.swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background-color: #c4c4c4 !important; /* Inactive color */
+  border-radius: 0 !important; /* ✅ Remove roundness */
+  margin: 0 4px !important;
+  opacity: 1 !important;
+}
+
+/* Active bullet */
+.swiper-pagination-bullet-active {
+  background-color: #00d1e6 !important; /* Active color */
+}
+
+/* Pagination wrapper */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 1.5rem !important;
+  text-align: center !important;
+}
+
+/* Optional: Positioning */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+
+.our-future-section {
+  position: sticky;
+  top: 0; /* stays at top while scrolling */
+  z-index: 10;
+}
+
+/* Zoho career page CSS */
+
+.rec-job-title a{
+  color: #00cacf !important;
+}
+
+.embed_jobs_head{
+  background-color: #fff !important;
+}
+
+
+.rec-job-info {
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: auto !important;
+}
+
+/* Title */
+.rec-job-title a {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00bcd4;
+  text-decoration: none;
+}
+
+/* Location */
+.zrsite_Location {
+  margin: 5px 0;
+  color: #333;
+}
+
+/* Description */
+.zrsite_Job_Description {
+  font-size: 14px;
+  color: #444;
+  margin: 10px 0 !important;
+  flex-grow: 1;
+}
+
+/* Date + Job Type at bottom */
+.zrsite_Date_Opened {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #555;
+}
+
+.embed_jobs_head2{
+  width: 95% !important;
+}
+
+.bg-about-us-card-stack{
+  background: linear-gradient(180deg, hsla(0, 0%, 83%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
+}
+
+
+/* Media query */
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .contact-footer-background {
+    height: 400px;
+  }
+
+  .tablet-view{
+    min-height: 400px !important;
+  }
+  
+  .vertical-gradient-border {
+    border-bottom: 1px solid;
+    border-right: none;
+  }
+}
+
+/* Mobile query */
+
+@media (max-width: 800px) {
+  .accordionsWrapper {
+    height: unset;
+  }
+
+  .vertical-gradient-border{
+    border-bottom: 0;
+  }
+
+  .pipeline{
+    height: 100% !important;
+  }
+
+  .vertical-gradient-border::after {
+    display: none;
+  }
+
+  .custom-card {
+    position: relative !important;
+    width: 100% !important;
+    top: 0 !important;
+    height: auto !important; /* let it grow with content */
+    margin-bottom: 1rem; /* spacing between slides if needed */
+  }
+
+  .cards {
+    display: block !important; /* deactivate flex/absolute stacking on mobile */
+    height: auto !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-us-bg-image {
+    background-image: none !important;
+  }
+}
