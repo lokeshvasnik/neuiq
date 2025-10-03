@@ -190,6 +190,13 @@ const MemberSection = ({ title, description, members }) => {
                     <div className="text-left">
                       <h4 className="font-semibold text-gray-800 text-sm md:text-base">{member.name}</h4>
                     </div>
+                    {isActive && (
+                      <span
+                        className="absolute right-[-8px] top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-cyan-500 ring-2 ring-[#1e1e1e] shadow z-10"
+                        aria-hidden="true"
+                      />
+                    )}
+
                   </button>
                 );
               })}

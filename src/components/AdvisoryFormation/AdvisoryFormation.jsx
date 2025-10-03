@@ -7,7 +7,24 @@ import { FaArrowDown } from "react-icons/fa";
 gsap.registerPlugin(ScrollTrigger);
 
 const AdvisoryFormation = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+  const [isTabletLandscape, setIsTabletLandscape] = useState(false);
+
+  useEffect(() => {
+    const checkTabletLandscape = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      return width >= 800 && width <= 1600 && width > height; // tablet width + landscape
+    };
+
+    const handleResize = () => setIsTabletLandscape(checkTabletLandscape());
+
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 800);
@@ -18,7 +35,6 @@ const AdvisoryFormation = () => {
 
   // GSAP animations only for desktop
   useLayoutEffect(() => {
-
 
     if (isMobile) {
       gsap.utils.toArray(".mobile-step").forEach((step) => {
@@ -34,6 +50,17 @@ const AdvisoryFormation = () => {
           },
         });
       });
+
+      const tlTablet = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".mobile-step",
+            start: "top 80%", 
+            end: "top top",
+          }
+        });
+
+        // 1️⃣ Header fade-in
+        tlTablet.to(".insights-header", { opacity: 1, y: 0, duration: 0 });
     }
 
     // Desktop animations
@@ -56,8 +83,8 @@ const AdvisoryFormation = () => {
           { selector: ".left-top", from: { x: 100, opacity: 0 } },
           { selector: ".tall-middle", from: { x: 100, opacity: 0 } },
           { selector: ".box-1", from: { x: 100, opacity: 0 } },
-          { selector: ".box-2", from: { x: 100, opacity: 0 } },
-          { selector: ".box-4", from: { x: 100, opacity: 0 } },
+          { selector: ".box-2", from: { x: isTabletLandscape ? 10 : 100, opacity: 0 } },
+          { selector: ".box-4", from: { x: isTabletLandscape ? 10 : 100, opacity: 0 } },
           { selector: ".box-3", from: { x: 100, opacity: 0 } },
           { selector: ".right-bottom", from: { x: 100, opacity: 0 } },
           { selector: ".left-bottom", from: { x: 100, opacity: 0 } },
@@ -102,7 +129,7 @@ const AdvisoryFormation = () => {
         window.removeEventListener("load", refresh);
       };
     }
-  }, []);
+  }, [isMobile, isTabletLandscape]);
 
 
   // Mobile layout

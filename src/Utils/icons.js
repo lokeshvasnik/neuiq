@@ -256,7 +256,6 @@ import Slow_icon from "/src/assets/images/slow_icon.png";
 import Unclear_icon from "/src/assets/images/unclear_icon.png";
 
 import ourFutureImage from '/src/assets/images/our-future.svg'
-import ourFutureImageMobile from '/src/assets/images/our-future-mobile.png'
 
 // Leadership Images
 import leadership_1 from "/src/assets/images/leadership_1.png";
@@ -317,7 +316,6 @@ export const icons = {
   data_quality_checks_mobile,
   logoHorizontalQualtrics,
   ourFutureImage,
-  ourFutureImageMobile,
   aboutUshexagon,
   formationOfAIEnablement,
   caseStudyPeople,

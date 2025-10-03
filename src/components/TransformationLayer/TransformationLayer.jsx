@@ -1,10 +1,7 @@
-
 import { icons } from "../../Utils/icons"
 import { useLayoutEffect } from "react";
-
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-
 import imagesLoaded from "imagesloaded";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -20,54 +17,36 @@ const stepsData = [
     { desktop: icons.data_publishing_layer, mobile: icons.data_publishing_layer_mobile },
 ];
 
-
 const TransformationLayer = () => {
 
     useLayoutEffect(() => {
-        let ctx = gsap.context(() => {
+        const ctx = gsap.context(() => {
             const steps = gsap.utils.toArray(".step");
             const header = document.querySelector(".site-header");
             const headerHeight = header ? header.offsetHeight : 0;
 
-            const isMobile = window.innerWidth <= 800;
+            const width = window.innerWidth;
+            const isMobile = width < 800;
+            const isTablet = width >= 800 && width <= 1024;
+            const isDesktop = width > 1024;
 
-            // Hide header when entering pipeline (both mobile & desktop)
+            // -------------------------------
+            // Header hide/show on scroll (all devices)
+            // -------------------------------
             ScrollTrigger.create({
                 trigger: ".pipeline",
                 start: `top ${headerHeight}px`,
                 end: "bottom top",
-                onEnter: () =>
-                    gsap.to(".site-header", {
-                        y: -50,
-                        opacity: 0,
-                        duration: 0.5,
-                        ease: "power2.inOut",
-                    }),
-                onLeaveBack: () =>
-                    gsap.to(".site-header", {
-                        y: 0,
-                        opacity: 1,
-                        duration: 0.5,
-                        ease: "power2.inOut",
-                    }),
+                onEnter: () => gsap.to(".site-header", { y: -50, opacity: 0, duration: 0.5, ease: "power2.inOut" }),
+                onLeaveBack: () => gsap.to(".site-header", { y: 0, opacity: 1, duration: 0.5, ease: "power2.inOut" }),
             });
 
-            // Insights header animation
-            gsap.to(".insights-header", {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: ".pipeline",
-                    start: "top 75px",
-                    toggleActions: "play none none reverse",
-                },
-            });
-
+            // -------------------------------
+            // Device-specific animations
+            // -------------------------------
             if (isMobile) {
-                // 👉 MOBILE: each step fades in one by one
-                steps.forEach((step) => {
+                // MOBILE: animate each step one by one
+                steps.forEach(step => {
                     gsap.from(step, {
                         y: 50,
                         opacity: 0,
@@ -76,12 +55,58 @@ const TransformationLayer = () => {
                         scrollTrigger: {
                             trigger: step,
                             start: "top 85%",
-                            toggleActions: "play none none reverse",
+                            toggleActions: "play none none none",
                         },
                     });
                 });
-            } else {
-                // 👉 DESKTOP: pinned horizontal timeline
+
+                // Mobile header fade-in
+                gsap.to(".insights-header", {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".pipeline",
+                        start: "top 75px",
+                        toggleActions: "play none none none",
+                    },
+                });
+            }
+
+            else if (isTablet) {
+                // TABLET: timeline for smooth sequence
+                const tlTablet = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".pipeline",
+                        start: "top 90%",
+                        toggleActions: "play none none none", 
+                    }
+                });
+
+                // 1️⃣ Header fade-in
+                tlTablet.to(".insights-header", { opacity: 1, y: 0, duration: 0.5 });
+            }
+
+            else if (isDesktop) {
+                // Fade-in header first
+                gsap.fromTo(
+                    ".insights-header",
+                    { opacity: 0, y: -20 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: ".pipeline",
+                            start: "top 75px",
+                            toggleActions: "play none none reverse",
+                        },
+                    }
+                );
+
+                // DESKTOP: pinned horizontal timeline
                 const tl = gsap.timeline({
                     scrollTrigger: {
                         trigger: ".pipeline",
@@ -93,41 +118,21 @@ const TransformationLayer = () => {
                     },
                 });
 
-                tl.from(steps, {
-                    x: -200,
-                    opacity: 0,
-                    stagger: 0.8,
-                    ease: "power2.out",
-                });
+                tl.from(steps, { x: -200, opacity: 0, stagger: 0.8, ease: "power2.out" });
 
-                tl.to(
-                    ".insights-header",
-                    {
-                        opacity: 0,
-                        duration: 1,
-                        ease: "power2.inOut",
-                    },
-                    "+=0.5"
-                );
+                // Fade-out header at the end
+                tl.to(".insights-header", { opacity: 0, duration: 1, ease: "power2.inOut" }, "+=0.5");
             }
+
+
         });
 
         // -------------------------------
-        // Production-safe refresh
+        // Refresh ScrollTrigger after images load / window load / timeout
         // -------------------------------
-        const refreshScrollTrigger = () => {
-            requestAnimationFrame(() => {
-                ScrollTrigger.refresh();
-            });
-        };
-
-        // Wait for all images inside .pipeline to load
+        const refreshScrollTrigger = () => requestAnimationFrame(() => ScrollTrigger.refresh());
         const imgLoadInstance = imagesLoaded(document.querySelector(".pipeline"), refreshScrollTrigger);
-
-        // Fallback: refresh on window load
         window.addEventListener("load", refreshScrollTrigger);
-
-        // Extra safety: refresh after 1s
         const timeout = setTimeout(refreshScrollTrigger, 1000);
 
         return () => {
@@ -136,8 +141,8 @@ const TransformationLayer = () => {
             timeout && clearTimeout(timeout);
             imgLoadInstance && imgLoadInstance.off("done", refreshScrollTrigger);
         };
-    }, []);
 
+    }, []);
 
     return (
         <section className="bg-black pb-10">
@@ -149,23 +154,15 @@ const TransformationLayer = () => {
                 {stepsData.map((step, i) => (
                     <div key={i} className="step">
                         <picture>
-                            {/* Mobile */}
                             <source media="(max-width: 768px)" srcSet={step.mobile} />
-                            {/* Desktop */}
                             <source media="(min-width: 769px)" srcSet={step.desktop} />
-                            {/* Fallback */}
-                            <img
-                                className="md:w-full md:h-full"
-                                src={step.desktop}
-                                alt={`layer-step-${i + 1}`}
-                            />
+                            <img className="md:w-full md:h-full" src={step.desktop} alt={`layer-step-${i + 1}`} />
                         </picture>
                     </div>
                 ))}
             </div>
-
         </section>
     )
 }
 
-export default TransformationLayer
+export default TransformationLayer;

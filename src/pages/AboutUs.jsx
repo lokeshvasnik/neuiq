@@ -19,16 +19,16 @@ const AboutUs = () => {
       <div className="aboutus-hero-banner -mt-40 bg-cover bg-center bg-no-repeat h-auto sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[700px]">
         <div className="text-white">
           <div className="lg:px-10 px-4 pt-40 max-w-full mx-auto">
-            <div className="flex flex-col sm:flex-col items-start justify-center gap-4 lg:min-h-[500px]">
-              <h1 className="text-2xl md:text-4xl sm:text-6xl sm:leading-[4.5rem]">
+            <div className="flex flex-col sm:flex-col items-start justify-center gap-4 md:py-10 lg:py-0 lg:min-h-[500px]">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl sm:leading-[4.5rem] lg:leading-[4.5rem] whitespace-pre-line">
                 <span className="font-bold">THE WORLD DOESN’T HAVE A < br /> DATA OR AI SHORTAGE</span>
               </h1>
-              <p className="sm:text-5xl mb-10">
+              <p className="text-xl md:text-4xl lg:text-6xl sm:leading-[4.5rem] lg:leading-[4.5rem] whitespace-pre-line mb-5 lg:mb-10">
                 <span className="">"IT HAS AN EXECUTION GAP"</span>
               </p>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="px-4 py-2 sm:px-5 text-base sm:py-2 w-40 sm:w-40 rounded-md whitespace-nowrap bg-[#00CACF] text-black flex items-center sm:text-lg font-medium justify-center uppercase">
+                className="px-4 py-2 w-40 text-base mb-5 sm:mb-0 sm:py-2 sm:text-lg sm:px-5 sm:w-40 rounded-md whitespace-nowrap bg-[#00CACF] text-black flex items-center font-medium justify-center uppercase">
                 Contact Us
               </button>
             </div>
@@ -56,7 +56,7 @@ const AboutUs = () => {
           THE PROMISE OF TRANSFORMATION WAS <br />
           THERE. BUT THE PATH TO GET THERE...
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10 sm:mb-10">
           {/* Column 1 */}
           <div className="flex flex-col items-center">
             <div className="mb-4 w-44">

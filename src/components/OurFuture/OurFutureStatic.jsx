@@ -16,8 +16,7 @@ const OurFutureStatic = () => {
                 </p>
             </div>
             <div>
-                <img className="w-full hidden lg:block" src={icons.ourFutureImage} alt="our-future-desktop" />
-                <img className="w-full lg:hidden" src={icons.ourFutureImageMobile} alt="our-future-image" />
+                <img className="w-full" src={icons.ourFutureImage} alt="our-future-image" />
             </div>
         </div>
     );

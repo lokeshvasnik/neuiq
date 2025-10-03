@@ -65,6 +65,23 @@ const ChallengeText = ({ title, description, className = '' }) => (
 const HexagonMake = ({challenges}) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [isTabletLandscape, setIsTabletLandscape] = useState(false);
+
+    useEffect(() => {
+        const checkTabletLandscape = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            return width >= 800 && width <= 1600 && width > height; // tablet width + landscape
+        };
+
+        const handleResize = () => setIsTabletLandscape(checkTabletLandscape());
+
+        handleResize(); // initial check
+        window.addEventListener("resize", handleResize);
+
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
 
     useEffect(() => {
         // Only auto-advance if nothing is hovered
@@ -110,11 +127,11 @@ const HexagonMake = ({challenges}) => {
                                 if (side === 'left') {
                                     textX = x - 500;
                                     textAlign = 'text-right';
-                                    textWidth = 'w-[410px]';
+                                    textWidth = isTabletLandscape ? 'w-[410px]' : 'w-[410px]';
                                 } else {
                                     textX = x + 120;
                                     textAlign = 'text-left';
-                                    textWidth = 'w-[410px]';
+                                    textWidth = isTabletLandscape ? 'w-[310px]' : 'w-[410px]';
                                 }
 
                                 // Use currentActiveIndex for highlighting

@@ -170,7 +170,7 @@ const DataUnification = () => {
         <div className="text-white">
           <div className="lg:px-10 px-4 sm:px-6 pt-40 max-w-full mx-auto">
             <div className="flex flex-col sm:flex-col items-start justify-center gap-4 lg:min-h-[500px]">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl sm:leading-[4.5rem] font-bold leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl sm:leading-[4.5rem] font-bold leading-tight">
                 UNIFY TO AMPLIFY: BUILD A <br /> SINGLE SOURCE OF TRUTH
               </h1>
               <p className="sm:mb-10 sm:text-base text-xs text-[#bfcadb]">
@@ -308,7 +308,7 @@ const DataUnification = () => {
             <p className="uppercase font-semibold text-lg text-gray-950 tracking-wide mb-4">
               Explore
             </p>
-            <h2 className="text-4xl md:text-3xl lg:text-4xl font-semibold text-black">
+            <h2 className="text-4xl md:text-4xl font-semibold text-black">
               <span className="text-[#00B2C6] font-bold">
                 <Link className="font-bold" to={PATH.DataModernization}>
                   Data Modernization

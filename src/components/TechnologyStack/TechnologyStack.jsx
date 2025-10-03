@@ -90,8 +90,7 @@ const TechnologyStack = () => {
                 <div className="flex-[2]"><h1 className="text-2xl sm:text-4xl text-center lg:text-left font-bold mb-4 uppercase">
                     TECHNOLOGIES THAT ENABLE <br /> OUR SOLUTION DELIVERY
                 </h1></div>
-                <div className="flex-[1]"><h1 className="hidden lg:block text-center text-2xl sm:text-3xl font-bold mb-4 uppercase md:ml-8">EXPERIENCE & OPERATIONS
-                    ENABLEMENT PLATFORMS</h1>
+                <div className="flex-[1]"><h1 className="hidden lg:block text-center text-2xl sm:text-3xl font-bold mb-4">EXPERIENCE & OPERATIONS ENABLEMENT PLATFORMS</h1>
                 </div>
             </div>
             <div>

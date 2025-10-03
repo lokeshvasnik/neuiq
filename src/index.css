@@ -759,3 +759,11 @@ body {
     background-image: none !important;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .honeycomb-container {
+    transform: scale(0.7);
+    height: 350px;
+    background-color: red !important;
+  }
+}
